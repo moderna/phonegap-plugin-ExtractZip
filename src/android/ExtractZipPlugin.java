@@ -1,5 +1,7 @@
 package org.apache.cordova.plugin.ExtractZip;
 
+import android.os.Environment;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -80,6 +82,16 @@ public class ExtractZipPlugin extends CordovaPlugin {
 		try {
 			String filename = args.getString(0);
 			String destDir =  args.getString(1);
+			String baseDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+            if( filename.startsWith("/sdcard") )
+            {
+                String replacedString = filename.replace("/sdcard", baseDir);
+            }
+            if( destDir.startsWith("/sdcard") )
+            {
+                String replacedString = destDir.replace("/sdcard", baseDir);
+            }
+
 			ZipFile zipFile = new ZipFile(filename);
 			ZipEntry entry;
 			InputStream is = null;

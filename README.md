@@ -1,7 +1,7 @@
 phonegap-plugin-ExtractZip
 ==========================
 
-Now it supports Android and iOS within Phonegap 3.
+Now it supports Android (> 4.1) and iOS (>6) with cordova 6.1.1+.
 
 there are two methods:
 

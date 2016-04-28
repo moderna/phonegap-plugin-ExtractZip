@@ -22,11 +22,11 @@
     CDVPluginResult *result;
     if([SSZipArchive unzipFileAtPath:file toDestination:destination delegate:nil]) {
         result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[destination stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        [self writeJavascript:[result toSuccessCallbackString:command.callbackId]];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
         NSLog(@"Success!");
     } else {
         result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[@"Could not extract archive" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        [self writeJavascript:[result toErrorCallbackString:command.callbackId]];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
         NSLog(@"Error!");
     }
 }
